@@ -1,0 +1,9 @@
+Objectif : structurer et ordonnancer un Dockerfile pour maximiser le cache.
+
+    À partir de ce projet Node.js minimal (un fichier server.js + package.json), écris un Dockerfile en respectant ces bonnes pratiques :
+
+        Séparer l’installation des dépendances de la copie du code applicatif.
+
+        Utiliser un multi-stage build pour obtenir une image finale allégée.
+
+    Indique, en commentaire dans le Dockerfile, pourquoi chaque instruction est placée à cet endroit (impact sur le cache).

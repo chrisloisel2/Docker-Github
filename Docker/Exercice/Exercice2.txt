@@ -1,0 +1,17 @@
+Objectif : gérer volumes et réseaux pour un service dépendant (BD + app).
+
+    Choisis un petit projet existant (par ex. une API Python + une base de données PostgreSQL).
+
+    Crée un docker-compose.yml qui :
+
+        Définit un réseau dédié (app-net).
+
+        Monte un volume persistant pour les données de Postgres (db-data).
+
+        Lie l’API à la base (depends_on, variables d’env.).
+
+    Vérifie que tu peux :
+
+        Démarrer l’ensemble avec docker-compose up.
+
+        Arrêter, supprimer les conteneurs, puis relancer sans perdre les données de la base.

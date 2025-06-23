@@ -1,0 +1,28 @@
+version: '3.8'
+
+services:
+  front:
+    image: python:3.11-slim
+    container_name: my_python_app
+    networks:
+      - my_network
+    volumes:
+      - ./:/app
+    working_dir: /app
+    command: python app.py
+
+  back:
+    image: python:3.11-slim
+    container_name: my_python_app_backend
+    networks:
+      - my_network
+    volumes:
+      - ./backend:/app
+    environment:
+      - BACKEND_ENV=production
+    working_dir: /app
+    command: python back.py
+
+networks:
+  my_network:
+    driver: bridge
