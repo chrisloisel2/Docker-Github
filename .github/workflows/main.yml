@@ -1,5 +1,5 @@
-# .github/workflows/docker-ci.yml
-name: CI Docker Build & Push
+# .github/workflows/run-dockerfile.yml
+name: Build & Run Dockerfile
 
 on:
   push:
@@ -8,30 +8,26 @@ on:
     branches: [ main ]
 
 jobs:
-  docker:
-    name: Build & Push multi-arch
+  build-and-run:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout
+      - name: Checkout code
         uses: actions/checkout@v4
 
-      - name: Set up QEMU (pour multi-arch)
-        uses: docker/setup-qemu-action@v3
-
-      - name: Set up Docker Buildx
+      - name: Set up Buildx
         uses: docker/setup-buildx-action@v3
         with:
           install: true
 
-      - name: Build and push image
+      - name: Build Docker image
         uses: docker/build-push-action@v6
         with:
-          context: ./Docker/
+          context: .
           file: Dockerfile
-          platforms: linux/amd64,linux/arm64
-          push: true
-          tags: ghcr.io/arte/formation:latest
-          # Cache des couches et des mounts BuildKit via GitHub Actions Cache
-          cache-from: type=gha
-          cache-to:   type=gha,mode=max
+          load: true            
+          tags: ci-test:latest 
+
+      - name: Run container
+        run: |
+          docker run --rm ci-test:latest
