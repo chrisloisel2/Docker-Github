@@ -31,7 +31,7 @@ jobs:
           file: Dockerfile
           platforms: linux/amd64,linux/arm64
           push: true
-          tags: ghcr.io/TON_ORG/TON_REPO:latest
+          tags: ghcr.io/arte/formation:latest
           # Cache des couches et des mounts BuildKit via GitHub Actions Cache
           cache-from: type=gha
           cache-to:   type=gha,mode=max
